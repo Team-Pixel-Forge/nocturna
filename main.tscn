@@ -40,7 +40,6 @@ mesh = SubResource("CapsuleMesh_h71v2")
 shape = SubResource("CapsuleShape3D_sr6l8")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 spring_length = 8.0
 margin = 0.2
 script = ExtResource("2_odts3")
