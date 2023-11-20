@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var spring_arm: SpringArm3D = $SpringArm3D
 @onready var pivot: Node3D = $Pivot  
+@onready var animation_player: AnimationPlayer = $Pivot/Body/AnimationPlayer  
 
 
 func _physics_process(delta):
@@ -24,8 +25,6 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
 	# TODO by default rotate player, strafe only on holding right click?
-	
-	# rotate(Vector3.UP, spring_arm.rotation.y)
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")	
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -44,6 +43,19 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if velocity.length() > 0.2 :
-		var look_direction = Vector2(velocity.z, velocity.x)
-		pivot.rotation.y = lerp_angle(pivot.rotation.y, look_direction.angle(), delta*SPEED*5)
+
+		
+	if Input.is_action_pressed("ui_up") :
+		if velocity.length() > 0.2 :
+			var look_direction = Vector2(velocity.z, velocity.x)
+			pivot.rotation.y = lerp_angle(pivot.rotation.y, look_direction.angle(), delta*SPEED*5)
+		animation_player.play("run_forward")
+	elif Input.is_action_pressed("ui_down") :
+		animation_player.play("run_backward")
+	else:	
+		if Input.is_action_pressed("ui_left") :
+			animation_player.play("strafe_left")
+		elif Input.is_action_pressed("ui_right") :
+			animation_player.play("strafe_right")
+		else:	
+			animation_player.play("idle")
