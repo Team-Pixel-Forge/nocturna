@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" path="res://Player.gd" id="1_jwt3r"]
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="2_odts3"]
+[ext_resource type="PackedScene" uid="uid://gcx0mvg8f5do" path="res://untitled.glb" id="2_wayh8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o0q7m"]
 size = Vector3(10, 1, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_n3w44"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_h71v2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sr6l8"]
 
@@ -33,8 +32,8 @@ script = ExtResource("1_jwt3r")
 
 [node name="Pivot" type="Node3D" parent="Player"]
 
-[node name="Body" type="MeshInstance3D" parent="Player/Pivot"]
-mesh = SubResource("CapsuleMesh_h71v2")
+[node name="Body" parent="Player/Pivot" instance=ExtResource("2_wayh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00384, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_sr6l8")

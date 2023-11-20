@@ -7,7 +7,8 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var spring_arm: SpringArm3D = $SpringArm3D 
+@onready var spring_arm: SpringArm3D = $SpringArm3D
+@onready var pivot: Node3D = $Pivot  
 
 
 func _physics_process(delta):
@@ -24,14 +25,25 @@ func _physics_process(delta):
 	
 	# TODO by default rotate player, strafe only on holding right click?
 	
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	# rotate(Vector3.UP, spring_arm.rotation.y)
+	
+	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")	
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	direction = direction.rotated(Vector3.UP, spring_arm.rotation.y).normalized()
+	
+	
+	
 	if direction:
+		
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)	
 
 	move_and_slide()
+	
+	if velocity.length() > 0.2 :
+		var look_direction = Vector2(velocity.z, velocity.x)
+		pivot.rotation.y = lerp_angle(pivot.rotation.y, look_direction.angle(), delta*SPEED*5)
