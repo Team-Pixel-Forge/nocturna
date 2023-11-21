@@ -8,6 +8,7 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var spring_arm: SpringArm3D = $SpringArm3D
+@onready var camera: Camera3D = $SpringArm3D/Camera3D
 @onready var pivot: Node3D = $Pivot  
 @onready var animation_player: AnimationPlayer = $Pivot/Body/AnimationPlayer  
 
@@ -24,11 +25,11 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
-	# TODO by default rotate player, strafe only on holding right click?
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")	
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	# we can probably remove this now
 	direction = direction.rotated(Vector3.UP, spring_arm.rotation.y).normalized()
 	
 	
@@ -43,12 +44,13 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-
+	# use look at instead
+	if velocity.length() > 0.2 :
+		pivot.look_at(Vector3(camera.global_position.x, 0, camera.global_position.z))
+	#	var look_direction = Vector2(velocity.z, velocity.x)
+	#	pivot.rotation.y = lerp_angle(pivot.rotation.y, look_direction.angle(), delta*SPEED*5)
 		
 	if Input.is_action_pressed("ui_up") :
-		if velocity.length() > 0.2 :
-			var look_direction = Vector2(velocity.z, velocity.x)
-			pivot.rotation.y = lerp_angle(pivot.rotation.y, look_direction.angle(), delta*SPEED*5)
 		animation_player.play("run_forward")
 	elif Input.is_action_pressed("ui_down") :
 		animation_player.play("run_backward")
