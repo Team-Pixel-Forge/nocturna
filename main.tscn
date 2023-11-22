@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://y4wdvh76fxdv"]
+[gd_scene load_steps=8 format=3 uid="uid://y4wdvh76fxdv"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_jwt3r"]
 [ext_resource type="PackedScene" uid="uid://cx54gbcp6vonv" path="res://player.tscn" id="2_midfu"]
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="2_odts3"]
+[ext_resource type="Script" path="res://Enemy.gd" id="4_cp5sp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o0q7m"]
 size = Vector3(10, 1, 10)
@@ -44,3 +45,15 @@ margin = 0.2
 script = ExtResource("2_odts3")
 
 [node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D"]
+
+[node name="Enemy" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -8.49128, 0.324122, -7.91486)
+script = ExtResource("4_cp5sp")
+
+[node name="Pivot" type="Node3D" parent="Enemy"]
+
+[node name="Body" parent="Enemy/Pivot" instance=ExtResource("2_midfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.950099, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+shape = SubResource("CapsuleShape3D_sr6l8")
