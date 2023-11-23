@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clip0i04h6c18"
-path.s3tc="res://.godot/imported/player_Paladin_diffuse.png-aa00db25dae63743fc8143101eaf4185.s3tc.ctex"
+uid="uid://cohk378bsmmgj"
+path.s3tc="res://.godot/imported/player_Paladin_diffuse.png-954994afa9150bca8a60d95e99ecbb97.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://player_Paladin_diffuse.png"
-dest_files=["res://.godot/imported/player_Paladin_diffuse.png-aa00db25dae63743fc8143101eaf4185.s3tc.ctex"]
+source_file="res://assets/player_Paladin_diffuse.png"
+dest_files=["res://.godot/imported/player_Paladin_diffuse.png-954994afa9150bca8a60d95e99ecbb97.s3tc.ctex"]
 
 [params]
 

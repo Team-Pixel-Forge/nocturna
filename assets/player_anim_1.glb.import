@@ -4,12 +4,12 @@ importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
 uid="uid://cc0v5hp4li48y"
-path="res://.godot/imported/player_anim_1.glb-c572184e27e6a76b07ec2c886a4583be.res"
+path="res://.godot/imported/player_anim_1.glb-8fc27ee7e52896c3b4ebe74bddff46b2.res"
 
 [deps]
 
-source_file="res://player_anim_1.glb"
-dest_files=["res://.godot/imported/player_anim_1.glb-c572184e27e6a76b07ec2c886a4583be.res"]
+source_file="res://assets/player_anim_1.glb"
+dest_files=["res://.godot/imported/player_anim_1.glb-8fc27ee7e52896c3b4ebe74bddff46b2.res"]
 
 [params]
 
